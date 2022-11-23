@@ -8,10 +8,10 @@
 #include <SFML/System.hpp>
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
+#include <iostream>
 
 #include "Ball.h"
 #include "Paddle.h"
-#include "PlayerController.h"
 
 namespace gm {
 	const int GameWidth = 1080;
@@ -22,15 +22,22 @@ namespace gm {
 		sf::RenderWindow window;
 		sf::Clock clock;
 		float deltaTime;
+		bool gameState;
 		
 		Ball ball;
-		Paddle player;
-		Paddle ai;
 		Paddle leftWall;
 		Paddle rightWall;
 		Paddle topWall;
 		Paddle bottomWall;
-		//PlayerController playerController;
+		Paddle player;
+		Paddle ai;
+
+		sf::Text gameOver;
+		sf::Text points1;
+		sf::Text points2;
+
+		int playerPoints;
+		int aiPoints;
 
 	public:
 		Game();

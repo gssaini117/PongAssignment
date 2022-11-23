@@ -1,5 +1,5 @@
 ﻿  Ball.cpp
-C:\Users\gurki\OneDrive\Documents\GAME 230\PongAssignment\PongAssignment\Ball.cpp(85,67): warning C4305: 'argument': truncation from 'double' to 'T'
+C:\Users\gurki\OneDrive\Documents\GAME 230\PongAssignment\PongAssignment\Ball.cpp(87,66): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float

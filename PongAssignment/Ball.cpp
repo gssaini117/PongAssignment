@@ -18,8 +18,10 @@ void Ball::update(sf::RenderWindow& window, float deltaTime) {
 			timer.restart();
 			reset = false;
 		}
-		std::cout << timer.getElapsedTime().asSeconds() << std::endl;
-		if (timer.getElapsedTime().asSeconds() > 3.0f) moving = true;
+		if (timer.getElapsedTime().asSeconds() > 2.0f) {
+			std::cout << "Ball Reset." << std::endl << std::endl;
+			moving = true;
+		}
 	}
 }
 
@@ -65,7 +67,7 @@ void Ball::setCurrSpeed(int speed) {
 void Ball::bounce(int type) {
 	switch (type) {
 	case 1: // paddle collision
-		BallMovementSpeedPerSecond += 5;
+		BallMovementSpeedPerSecond += 20;
 		MovementDirection = Vector2f(-MovementDirection.x, MovementDirection.y);
 		break;
 	case 2: // top/bottom wall collision
@@ -82,5 +84,5 @@ void Ball::resetBall() {
 	reset = true;
 	setPosition(Vector2f(530, 310));
 	BallMovementSpeedPerSecond = 180;
-	MovementDirection = Vector2f(-1.08, Random::Range(-0.64f, -0.44f));
+	MovementDirection = Vector2f(-1.08, Random::Range(-0.64f, 0.64f));
 }
