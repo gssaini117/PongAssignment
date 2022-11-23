@@ -1,0 +1,7 @@
+﻿  Ball.cpp
+C:\Users\gurki\OneDrive\Documents\GAME 230\PongAssignment\PongAssignment\Ball.cpp(85,67): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+  PongAssignment.vcxproj -> C:\Users\gurki\OneDrive\Documents\GAME 230\PongAssignment\PongAssignment\Debug\PongAssignment.exe

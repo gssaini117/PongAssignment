@@ -1,8 +1,6 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
-/* SFML Includes             *
- * Add to every SFML project */
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
@@ -11,7 +9,6 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
 
-// Use our gm namespace for all our defined classes
 namespace gm {
 	// Our abstract GameObject class that defines the interface for all objects that appear in our games
 	class GameObject
