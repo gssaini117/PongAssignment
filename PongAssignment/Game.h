@@ -32,15 +32,21 @@ namespace gm {
 		Paddle player;
 		Paddle ai;
 
-		sf::Text gameOver;
-		sf::Text points1;
-		sf::Text points2;
+		sf::SoundBuffer paddlesfx;
+		sf::SoundBuffer wallsfx;
+		sf::SoundBuffer pointsfx;
+		sf::SoundBuffer gosfx;
+		sf::Sound paddleSound;
+		sf::Sound wallSound;
+		sf::Sound pointSound;
+		sf::Sound gameoverSound;
 
 		int playerPoints;
 		int aiPoints;
 
 	public:
 		Game();
+		void load();
 		void run();
 		void handleInput();
 		void update();

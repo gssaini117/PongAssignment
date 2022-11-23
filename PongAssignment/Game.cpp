@@ -6,7 +6,7 @@ using namespace sf;
 // Implement constructor, this will effectively be a setup function as the game gets more complex
 Game::Game() :  window(VideoMode(GameWidth, GameHeight), "Game"), 
 				clock(), deltaTime(0), playerPoints(0), aiPoints(0), gameState(true),
-				gameOver(), points1(), points2(),
+				paddleSound(), wallSound(), pointSound(), gameoverSound(),
 				ball(Vector2f(530, 310), Vector2f(20,20)), 
 				player(Vector2f(100, 240), Vector2f(20, 180)), 
 				ai(Vector2f(980, 240), Vector2f(20, 180)),
@@ -19,6 +19,7 @@ Game::Game() :  window(VideoMode(GameWidth, GameHeight), "Game"),
 }
 
 void Game::run() {
+	load();
 	std::cout << "GAME BEGIN" << std::endl << std::endl;
 	while (window.isOpen())
 	{
@@ -29,6 +30,20 @@ void Game::run() {
 		update();
 		render();
 	}
+}
+
+void Game::load() {
+	paddlesfx.loadFromFile("Sounds/paddle_sfx.wav");
+	paddleSound.setBuffer(paddlesfx);
+
+	wallsfx.loadFromFile("Sounds/wall_sfx.wav");
+	wallSound.setBuffer(wallsfx);
+
+	pointsfx.loadFromFile("Sounds/point_sfx.wav");
+	pointSound.setBuffer(pointsfx);
+
+	gosfx.loadFromFile("Sounds/gameover_sfx.wav");
+	gameoverSound.setBuffer(gosfx);
 }
 
 // Implements the handle input portion of our Game Loop Programming Pattern
@@ -68,8 +83,6 @@ void Game::handleInput() {
 
 // Implements the update portion of our Game Loop Programming Pattern
 void Game::update() {
-	points1.setString(std::to_string(playerPoints));
-	points2.setString(std::to_string(aiPoints));
 	if (gameState) {
 		ball.update(window, deltaTime);
 		player.update(window, deltaTime);
@@ -78,16 +91,20 @@ void Game::update() {
 		// collision handling
 		if (ball.collide(player.getCollider())) {
 			ball.bounce(1);
+			paddleSound.play();
 		}
 		if (ball.collide(ai.getCollider())) {
 			ball.bounce(1);
+			paddleSound.play();
 		}
 		if (ball.collide(topWall.getCollider()) || ball.collide(bottomWall.getCollider())) {
 			ball.bounce(2);
+			wallSound.play();
 		}
 		if (ball.collide(leftWall.getCollider())) {
 			ball.bounce(3);
 			ball.resetBall();
+			pointSound.play();
 			aiPoints++;
 			std::cout << "Player 1: " << playerPoints << std::endl;
 			std::cout << "Player 2: " << aiPoints << std::endl << std::endl;
@@ -95,6 +112,7 @@ void Game::update() {
 		if (ball.collide(rightWall.getCollider())) {
 			ball.bounce(3);
 			ball.resetBall();
+			pointSound.play();
 			playerPoints++;
 			std::cout << "Player 1: " << playerPoints << std::endl;
 			std::cout << "Player 2: " << aiPoints << std::endl << std::endl;
@@ -122,6 +140,7 @@ void Game::update() {
 		// win condition
 		if (aiPoints == 7 || playerPoints == 7) {
 			gameState = false;
+			gameoverSound.play();
 			std::cout << "GAME OVER" << std::endl << "Press Spacebar to Quit" << std::endl;
 		}
 	}

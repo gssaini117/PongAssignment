@@ -1,6 +1,5 @@
 #include "Ball.h"
 #include "Random.h"
-#include <iostream>
 
 using namespace sf;
 using namespace gm;
@@ -19,7 +18,6 @@ void Ball::update(sf::RenderWindow& window, float deltaTime) {
 			reset = false;
 		}
 		if (timer.getElapsedTime().asSeconds() > 2.0f) {
-			std::cout << "Ball Reset." << std::endl << std::endl;
 			moving = true;
 		}
 	}
